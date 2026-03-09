@@ -1,5 +1,5 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 import '../styles/global.css';
 import Particles from '../components/Particles.astro';
 import ThemeToggle from '../components/ThemeToggle.astro';
@@ -41,7 +41,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       rel="stylesheet"
     />
 
-    <ViewTransitions />
+    <ClientRouter />
     <title>{title}</title>
     <script is:inline>
       (function() {

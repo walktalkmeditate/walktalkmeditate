@@ -31,8 +31,8 @@
 
     function updateIcons() {
       var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-      iconCampfire.classList.toggle('hidden', isDark);
-      iconStars.classList.toggle('hidden', !isDark);
+      iconCampfire!.classList.toggle('hidden', isDark);
+      iconStars!.classList.toggle('hidden', !isDark);
     }
 
     updateIcons();
