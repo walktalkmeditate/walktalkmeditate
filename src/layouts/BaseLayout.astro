@@ -1,5 +1,7 @@
 ---
+import { ViewTransitions } from 'astro:transitions';
 import '../styles/global.css';
+import Particles from '../components/Particles.astro';
 
 interface Props {
   title: string;
@@ -33,9 +35,64 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       rel="stylesheet"
     />
 
+    <ViewTransitions />
     <title>{title}</title>
   </head>
   <body class="min-h-screen">
-    <slot />
+    <div id="reading-progress" class="fixed top-0 left-0 h-[1px] bg-sage/40 z-[100] transition-none" style="width: 0%" />
+    <div id="particles" class="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true" />
+    <Particles />
+    <div class="relative z-10">
+      <slot />
+    </div>
+
+    <script>
+      function initEffects() {
+        // Reading progress
+        const bar = document.getElementById('reading-progress');
+        if (bar) {
+          window.addEventListener('scroll', () => {
+            const h = document.documentElement;
+            const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+            bar.style.width = `${Math.min(pct, 100)}%`;
+          }, { passive: true });
+        }
+
+        // Scroll reveal
+        const reveals = document.querySelectorAll('.reveal');
+        if (reveals.length > 0) {
+          const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+              if (e.isIntersecting) {
+                e.target.classList.add('revealed');
+                io.unobserve(e.target);
+              }
+            });
+          }, { threshold: 0.15 });
+          reveals.forEach(el => io.observe(el));
+        }
+
+        // Prose content reveal
+        document.querySelectorAll('.prose-content h2, .prose-content h3, .prose-content blockquote').forEach(el => {
+          el.classList.add('reveal');
+        });
+        const proseReveals = document.querySelectorAll('.prose-content .reveal');
+        if (proseReveals.length > 0) {
+          const pio = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+              if (e.isIntersecting) {
+                e.target.classList.add('revealed');
+                pio.unobserve(e.target);
+              }
+            });
+          }, { threshold: 0.15 });
+          proseReveals.forEach(el => pio.observe(el));
+        }
+      }
+
+      // Run on initial load and after view transitions
+      initEffects();
+      document.addEventListener('astro:after-swap', initEffects);
+    </script>
   </body>
 </html>

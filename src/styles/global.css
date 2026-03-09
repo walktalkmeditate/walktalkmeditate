@@ -18,6 +18,137 @@
   }
 }
 
+/* ---- Fireflies ---- */
+
+.firefly {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: theme('colors.sand.300');
+  box-shadow: 0 0 6px 2px rgba(212, 165, 116, 0.4),
+              0 0 14px 4px rgba(212, 165, 116, 0.15);
+  animation: glow ease-in-out infinite;
+  opacity: 0;
+}
+
+@keyframes glow {
+  0%, 100% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  15% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.3;
+    transform: translate(var(--wander-x), var(--wander-y));
+  }
+  85% {
+    opacity: 0.7;
+  }
+}
+
+/* ---- Ripples ---- */
+
+.ripple {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  border: 1px solid theme('colors.sand.300');
+  transform: translate(-50%, -50%);
+  animation: ripple-expand 4s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes ripple-expand {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0.5;
+  }
+  40% {
+    opacity: 0.25;
+  }
+  100% {
+    width: 280px;
+    height: 280px;
+    opacity: 0;
+  }
+}
+
+/* ---- Scroll reveal ---- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---- Breathing dots ---- */
+
+@keyframes breathe {
+  0%, 100% {
+    width: 2px;
+    height: 2px;
+    opacity: 0.25;
+  }
+  50% {
+    width: 7px;
+    height: 7px;
+    opacity: 0.9;
+  }
+}
+
+.breathing-dot {
+  display: inline-block;
+  vertical-align: middle;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: theme('colors.sand.300');
+  margin: 0 2px;
+  animation: breathe 6s ease-in-out infinite;
+}
+
+.breathing-dot:nth-of-type(2) {
+  animation-delay: 2s;
+}
+
+/* ---- View Transitions ---- */
+
+::view-transition-old(root) {
+  animation: fade-out 0.2s ease-in;
+}
+
+::view-transition-new(root) {
+  animation: fade-in 0.3s ease-out;
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ---- Reading progress ---- */
+
+#reading-progress {
+  transform-origin: left;
+}
+
+/* ---- Prose typography ---- */
+
 .prose-content {
   @apply max-w-prose;
 }

@@ -11,14 +11,7 @@ const base = import.meta.env.BASE_URL;
   <Header />
 
   <main class="max-w-wide mx-auto px-6">
-    <section class="pt-16 pb-24 md:pt-24 md:pb-32">
-      <img
-        src={`${base}logo-128.png`}
-        alt="walk · talk · meditate"
-        width="80"
-        height="80"
-        class="mb-10 opacity-70"
-      />
+    <section class="pt-16 pb-24 md:pt-28 md:pb-36">
       <h1 class="font-heading text-5xl sm:text-6xl md:text-[5.5rem] font-light text-sand-800 tracking-display leading-[1.05]">
         walk · talk · meditate
       </h1>
@@ -29,7 +22,7 @@ const base = import.meta.env.BASE_URL;
 
     <div class="border-t border-sand-200" />
 
-    <section class="py-20 md:py-28">
+    <section class="py-20 md:py-28 reveal">
       <div class="max-w-prose">
         <p class="text-sand-600 text-lg leading-relaxed">
           Inspired by the walk-and-talk tradition — small group walks with deep
@@ -47,7 +40,7 @@ const base = import.meta.env.BASE_URL;
 
     <div class="border-t border-sand-200" />
 
-    <section class="py-20 md:py-28">
+    <section class="py-20 md:py-28 reveal">
       <div class="grid md:grid-cols-3 gap-12 md:gap-16">
         <PillarCard
           title="Walk"
@@ -69,7 +62,7 @@ const base = import.meta.env.BASE_URL;
 
     <div class="border-t border-sand-200" />
 
-    <section class="py-20 md:py-28">
+    <section class="py-20 md:py-28 reveal">
       <a
         href={`${base}guide/getting-started/`}
         class="group inline-flex items-center gap-3 font-heading text-2xl md:text-3xl font-light text-sand-800 hover:text-sage transition-colors tracking-display"

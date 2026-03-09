@@ -1,0 +1,43 @@
+---
+---
+
+<script>
+  function spawnEffects() {
+    const container = document.getElementById('particles');
+    if (!container) return;
+
+    while (container.firstChild) {
+      container.removeChild(container.firstChild);
+    }
+
+    // Fireflies
+    const fireflyCount = Math.min(10, Math.floor(window.innerWidth / 140));
+    for (let i = 0; i < fireflyCount; i++) {
+      const f = document.createElement('div');
+      f.className = 'firefly';
+      f.style.left = `${5 + Math.random() * 90}%`;
+      f.style.top = `${10 + Math.random() * 80}%`;
+      f.style.animationDuration = `${4 + Math.random() * 6}s`;
+      f.style.animationDelay = `${Math.random() * 8}s`;
+      f.style.setProperty('--wander-x', `${-30 + Math.random() * 60}px`);
+      f.style.setProperty('--wander-y', `${-20 + Math.random() * 40}px`);
+      container.appendChild(f);
+    }
+
+    // Ripples
+    function spawnRipple() {
+      if (!document.getElementById('particles')) return;
+      const r = document.createElement('div');
+      r.className = 'ripple';
+      r.style.left = `${10 + Math.random() * 80}%`;
+      r.style.top = `${10 + Math.random() * 80}%`;
+      container.appendChild(r);
+      r.addEventListener('animationend', () => r.remove());
+      setTimeout(spawnRipple, 3000 + Math.random() * 5000);
+    }
+    setTimeout(spawnRipple, 1000 + Math.random() * 2000);
+  }
+
+  spawnEffects();
+  document.addEventListener('astro:after-swap', spawnEffects);
+</script>
