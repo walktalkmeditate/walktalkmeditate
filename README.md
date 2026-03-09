@@ -1,8 +1,6 @@
-# walk ⬡ talk ⬡ meditate
+# walk · talk · meditate
 
-An open-source pilgrimage framework for harmonizing body, mind, and spirit.
-
-Inspired by the walk-and-talk tradition — small group walks with deep conversations. Adding meditation as an equal third pillar transforms it into a pilgrimage anyone can take, solo or with a group, local or abroad.
+An open-source pilgrimage framework.
 
 **Live site**: [walktalkmeditate.org](https://walktalkmeditate.org)
 
@@ -30,7 +28,7 @@ npm run build    # production build
 
 ## Contributing
 
-This is open source — fork it, adapt it, run your own pilgrimage. If you discover something that works, contribute it back. Open a PR or start a discussion.
+Fork it, adapt it, run your own pilgrimage. If you discover something that works, contribute it back.
 
 ## Massive Transformative Purpose
 
