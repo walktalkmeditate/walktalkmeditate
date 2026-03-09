@@ -50,6 +50,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         var theme = stored || (prefersDark ? 'dark' : 'light');
         document.documentElement.setAttribute('data-theme', theme);
 
+        document.addEventListener('astro:before-swap', function(ev) {
+          var s = localStorage.getItem('theme');
+          var d = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var t = s || (d ? 'dark' : 'light');
+          ev.newDocument.documentElement.setAttribute('data-theme', t);
+        });
+
         var originalFavicon = document.querySelector('link[rel="icon"]').getAttribute('href');
         window.__updateFavicon = function(isDark) {
           var link = document.querySelector('link[rel="icon"]');
