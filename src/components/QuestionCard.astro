@@ -7,9 +7,9 @@ interface Props {
 const { text, stage } = Astro.props;
 ---
 
-<div class="py-6 border-b border-sand-100 last:border-0">
-  <p class="font-body text-lg text-sand-700 leading-relaxed">{text}</p>
-  <span class="inline-block mt-3 font-ui text-[11px] uppercase tracking-[0.15em] text-sand-300">
+<div class="py-6 border-b border-sand-100 dark:border-dusk-900 last:border-0">
+  <p class="font-body text-lg text-sand-700 dark:text-dusk-200 leading-relaxed">{text}</p>
+  <span class="inline-block mt-3 font-ui text-[11px] uppercase tracking-[0.15em] text-sand-300 dark:text-dusk-700">
     {stage}
   </span>
 </div>

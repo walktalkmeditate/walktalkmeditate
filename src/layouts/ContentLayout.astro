@@ -27,7 +27,7 @@ const section = Astro.props.section ?? fm?.section;
     <div class:list={['flex gap-20', section ? '' : 'justify-center']}>
       {section && <Navigation section={section} />}
       <article class="prose-content min-w-0 flex-1">
-        <h1 class="mb-12 text-sand-800">{title}</h1>
+        <h1 class="mb-12 text-sand-800 dark:text-dusk-100">{title}</h1>
         <slot />
       </article>
     </div>

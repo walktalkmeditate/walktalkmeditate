@@ -14,15 +14,15 @@ const navItems = [
 <header class="pt-8 pb-6 md:pt-12 md:pb-8">
   <nav class="max-w-wide mx-auto px-6 flex items-center justify-between">
     <a href={`${base}`} class="flex items-center gap-3 hover:opacity-70 transition-opacity" transition:name="site-title">
-      <img src={`${base}logo-32.png`} alt="" width="28" height="28" class="opacity-80" />
-      <span class="font-heading text-lg md:text-xl text-sand-800 tracking-display">
+      <img src={`${base}logo-32.png`} alt="" width="28" height="28" class="opacity-80 dark:invert" />
+      <span class="font-heading text-lg md:text-xl text-sand-800 dark:text-dusk-100 tracking-display">
         walk <span class="breathing-dot"></span> talk <span class="breathing-dot"></span> meditate
       </span>
     </a>
 
     <button
       id="menu-toggle"
-      class="md:hidden p-2 text-sand-400 hover:text-sand-600"
+      class="md:hidden p-2 text-sand-400 hover:text-sand-600 dark:text-dusk-300 dark:hover:text-dusk-200"
       aria-label="Toggle menu"
       aria-expanded="false"
     >
@@ -34,7 +34,7 @@ const navItems = [
     <ul class="hidden md:flex items-center gap-8 font-ui text-[13px] tracking-wide">
       {navItems.map(item => (
         <li>
-          <a href={item.href} class="nav-link text-sand-400 hover:text-sand-700 transition-colors">
+          <a href={item.href} class="nav-link text-sand-400 hover:text-sand-700 dark:text-dusk-300 dark:hover:text-dusk-200 transition-colors">
             {item.label}
           </a>
         </li>
@@ -46,7 +46,7 @@ const navItems = [
     <ul class="max-w-wide mx-auto px-6 pt-4 pb-2 space-y-2 font-ui text-sm">
       {navItems.map(item => (
         <li>
-          <a href={item.href} class="block text-sand-400 hover:text-sand-700 transition-colors py-1">
+          <a href={item.href} class="block text-sand-400 hover:text-sand-700 dark:text-dusk-300 dark:hover:text-dusk-200 transition-colors py-1">
             {item.label}
           </a>
         </li>
@@ -66,7 +66,7 @@ const navItems = [
     left: 0;
     width: 0;
     height: 1px;
-    background: theme('colors.sage');
+    background: theme('colors.sage.DEFAULT');
     transition: width 0.3s ease;
   }
   .nav-link:hover::after {

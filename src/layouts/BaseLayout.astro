@@ -1,7 +1,8 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 import '../styles/global.css';
 import Particles from '../components/Particles.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
 
 interface Props {
   title: string;
@@ -13,7 +14,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -40,15 +41,51 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       rel="stylesheet"
     />
 
-    <ViewTransitions />
+    <ClientRouter />
     <title>{title}</title>
+    <script is:inline>
+      (function() {
+        var stored = localStorage.getItem('theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = stored || (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+
+        var originalFavicon = document.querySelector('link[rel="icon"]').getAttribute('href');
+        window.__updateFavicon = function(isDark) {
+          var link = document.querySelector('link[rel="icon"]');
+          if (!link) return;
+          var img = new Image();
+          img.crossOrigin = 'anonymous';
+          img.onload = function() {
+            var c = document.createElement('canvas');
+            c.width = img.width;
+            c.height = img.height;
+            var ctx = c.getContext('2d');
+            if (isDark) {
+              ctx.filter = 'invert(1)';
+            }
+            ctx.drawImage(img, 0, 0);
+            link.href = c.toDataURL('image/png');
+          };
+          img.src = originalFavicon;
+        };
+        window.__updateFavicon(theme === 'dark');
+
+        window.addEventListener('theme-changed', function(e) {
+          window.__updateFavicon(e.detail.theme === 'dark');
+        });
+      })();
+    </script>
   </head>
   <body class="min-h-screen">
-    <div id="reading-progress" class="fixed top-0 left-0 h-[1px] bg-sage/40 z-[100] transition-none" style="width: 0%" />
+    <div id="reading-progress" class="fixed top-0 left-0 h-[1px] bg-sage/40 dark:bg-sage-light/40 z-[100] transition-none" style="width: 0%" />
     <div id="particles" class="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true" />
     <Particles />
     <div class="relative z-10">
       <slot />
+    </div>
+    <div class="fixed bottom-6 right-6 z-50">
+      <ThemeToggle />
     </div>
 
     <script>
