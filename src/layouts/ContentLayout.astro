@@ -5,12 +5,20 @@ import Footer from '../components/Footer.astro';
 import Navigation from '../components/Navigation.astro';
 
 interface Props {
-  title: string;
+  title?: string;
   description?: string;
   section?: 'guide' | 'ethos' | 'questions';
+  frontmatter?: {
+    title?: string;
+    description?: string;
+    section?: 'guide' | 'ethos' | 'questions';
+  };
 }
 
-const { title, description, section } = Astro.props;
+const fm = Astro.props.frontmatter;
+const title = Astro.props.title ?? fm?.title ?? '';
+const description = Astro.props.description ?? fm?.description;
+const section = Astro.props.section ?? fm?.section;
 ---
 
 <BaseLayout title={`${title} — walk · talk · meditate`} description={description}>
