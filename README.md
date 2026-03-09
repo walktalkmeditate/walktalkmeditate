@@ -4,7 +4,7 @@ An open-source pilgrimage framework for harmonizing body, mind, and spirit.
 
 Inspired by the walk-and-talk tradition — small group walks with deep conversations. Adding meditation as an equal third pillar transforms it into a pilgrimage anyone can take, solo or with a group, local or abroad.
 
-**Live site**: [walktalkmeditate.github.io/walktalkmeditate](https://walktalkmeditate.github.io/walktalkmeditate/)
+**Live site**: [walktalkmeditate.org](https://walktalkmeditate.org)
 
 ## The Three Pillars
 

@@ -4,7 +4,6 @@ import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
-  site: 'https://walktalkmeditate.github.io',
-  base: '/walktalkmeditate',
+  site: 'https://walktalkmeditate.org',
   integrations: [mdx(), sitemap(), tailwind()],
 });
