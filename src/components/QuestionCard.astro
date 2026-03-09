@@ -1,0 +1,22 @@
+---
+interface Props {
+  text: string;
+  stage: 'opening' | 'middle' | 'closing';
+  index: number;
+}
+
+const { text, stage, index } = Astro.props;
+
+const stageColors = {
+  opening: 'bg-accent/10 text-accent',
+  middle: 'bg-highlight/15 text-highlight',
+  closing: 'bg-secondary/20 text-text/60',
+};
+---
+
+<div class="p-6 rounded-xl bg-white/50 border border-secondary/15">
+  <p class="font-body text-lg leading-relaxed mb-4">{text}</p>
+  <span class:list={['inline-block px-3 py-1 rounded-full text-xs font-ui font-medium', stageColors[stage]]}>
+    {stage}
+  </span>
+</div>

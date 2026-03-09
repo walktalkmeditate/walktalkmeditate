@@ -1,0 +1,28 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Navigation from '../components/Navigation.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  section?: 'guide' | 'ethos' | 'questions';
+}
+
+const { title, description, section } = Astro.props;
+---
+
+<BaseLayout title={`${title} — walk ⬡ talk ⬡ meditate`} description={description}>
+  <Header />
+  <main class="max-w-5xl mx-auto px-6 py-12 md:py-20">
+    <div class:list={['flex gap-16', section ? '' : 'justify-center']}>
+      {section && <Navigation section={section} />}
+      <article class="prose-content min-w-0 flex-1">
+        <h1 class="text-accent mb-8">{title}</h1>
+        <slot />
+      </article>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

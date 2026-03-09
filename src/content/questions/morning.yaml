@@ -1,0 +1,25 @@
+description: >
+  One-sentence contemplative prompts to carry into the day.
+  Choose one each morning during meditation and let it
+  unfold as you walk.
+questions:
+  - text: "What are you grateful for in this moment?"
+    stage: opening
+  - text: "What would it mean to be fully present today?"
+    stage: opening
+  - text: "What are you ready to let go of?"
+    stage: middle
+  - text: "What does your highest self look like today?"
+    stage: middle
+  - text: "What is the silence between your thoughts trying to tell you?"
+    stage: middle
+  - text: "Where in your body do you hold peace?"
+    stage: middle
+  - text: "What would you do today if you had no fear?"
+    stage: middle
+  - text: "How does it feel to simply be, without needing to become?"
+    stage: closing
+  - text: "What is the kindest thing you can offer yourself today?"
+    stage: closing
+  - text: "What would it mean to walk through today with nothing to prove?"
+    stage: closing

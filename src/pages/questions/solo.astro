@@ -1,0 +1,18 @@
+---
+import ContentLayout from '../../layouts/ContentLayout.astro';
+import QuestionCard from '../../components/QuestionCard.astro';
+import { getEntry } from 'astro:content';
+
+const entry = await getEntry('questions', 'solo');
+const { description, questions } = entry!.data;
+---
+
+<ContentLayout title="Solo Reflection" section="questions" description="Introspective prompts for journaling and voice recording.">
+  <p>{description}</p>
+
+  <div class="grid gap-4 mt-8 not-prose">
+    {questions.map((q, i) => (
+      <QuestionCard text={q.text} stage={q.stage} index={i + 1} />
+    ))}
+  </div>
+</ContentLayout>

@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply bg-background text-text;
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-semibold;
+  }
+
+  h1 { @apply text-4xl md:text-5xl leading-tight; }
+  h2 { @apply text-3xl md:text-4xl leading-tight; }
+  h3 { @apply text-2xl md:text-3xl; }
+  h4 { @apply text-xl md:text-2xl; }
+
+  body {
+    @apply font-body text-lg leading-relaxed;
+  }
+}
+
+@layer components {
+  .prose-content {
+    @apply max-w-prose mx-auto;
+  }
+
+  .prose-content p {
+    @apply mb-6;
+  }
+
+  .prose-content h2 {
+    @apply mt-16 mb-6 text-accent;
+  }
+
+  .prose-content h3 {
+    @apply mt-12 mb-4;
+  }
+
+  .prose-content ul, .prose-content ol {
+    @apply mb-6 pl-6;
+  }
+
+  .prose-content li {
+    @apply mb-2;
+  }
+
+  .prose-content ul li {
+    @apply list-disc;
+  }
+
+  .prose-content ol li {
+    @apply list-decimal;
+  }
+
+  .prose-content blockquote {
+    @apply border-l-4 border-accent/40 pl-6 italic text-text/70 my-8;
+  }
+
+  .prose-content a {
+    @apply text-accent underline underline-offset-2 hover:text-accent/80 transition-colors;
+  }
+
+  .prose-content strong {
+    @apply font-semibold;
+  }
+
+  .prose-content hr {
+    @apply my-12 border-secondary/40;
+  }
+}

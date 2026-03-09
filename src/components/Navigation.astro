@@ -1,0 +1,67 @@
+---
+interface Props {
+  section: 'guide' | 'ethos' | 'questions';
+}
+
+const { section } = Astro.props;
+const base = import.meta.env.BASE_URL;
+
+const sections = {
+  guide: {
+    title: 'Pilgrimage Guide',
+    items: [
+      { label: 'Getting Started', href: `${base}guide/getting-started/` },
+      { label: 'Planning', href: `${base}guide/planning/` },
+      { label: 'Preparing', href: `${base}guide/preparing/` },
+      { label: 'On the Journey', href: `${base}guide/on-the-journey/` },
+      { label: 'Coming Home', href: `${base}guide/coming-home/` },
+    ],
+  },
+  ethos: {
+    title: 'Ethos',
+    items: [
+      { label: 'Open Source', href: `${base}ethos/open-source/` },
+      { label: 'The Golden Rule', href: `${base}ethos/golden-rule/` },
+      { label: 'Radical Presence', href: `${base}ethos/radical-presence/` },
+    ],
+  },
+  questions: {
+    title: 'Questions',
+    items: [
+      { label: 'Overview', href: `${base}questions/` },
+      { label: 'Walking', href: `${base}questions/walking/` },
+      { label: 'Evening', href: `${base}questions/evening/` },
+      { label: 'Solo Reflection', href: `${base}questions/solo/` },
+      { label: 'Morning Seeds', href: `${base}questions/morning/` },
+    ],
+  },
+};
+
+const current = sections[section];
+const currentPath = Astro.url.pathname;
+---
+
+<aside class="hidden lg:block w-56 shrink-0">
+  <nav class="sticky top-24">
+    <h3 class="font-ui text-xs font-semibold uppercase tracking-widest text-text/40 mb-4">
+      {current.title}
+    </h3>
+    <ul class="space-y-2 font-ui text-sm">
+      {current.items.map(item => (
+        <li>
+          <a
+            href={item.href}
+            class:list={[
+              'block py-1 transition-colors',
+              currentPath.endsWith(item.href.replace(/\/$/, '') + '/') || currentPath.endsWith(item.href.replace(/\/$/, ''))
+                ? 'text-accent font-medium'
+                : 'text-text/60 hover:text-accent',
+            ]}
+          >
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</aside>

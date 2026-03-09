@@ -1,0 +1,64 @@
+---
+const base = import.meta.env.BASE_URL;
+
+const navItems = [
+  { label: 'Walk', href: `${base}walk/` },
+  { label: 'Talk', href: `${base}talk/` },
+  { label: 'Meditate', href: `${base}meditate/` },
+  { label: 'Guide', href: `${base}guide/getting-started/` },
+  { label: 'Questions', href: `${base}questions/` },
+  { label: 'Ethos', href: `${base}ethos/open-source/` },
+];
+---
+
+<header class="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-secondary/20">
+  <nav class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href={`${base}`} class="font-heading text-xl md:text-2xl font-semibold text-text hover:text-accent transition-colors">
+      walk ⬡ talk ⬡ meditate
+    </a>
+
+    <button
+      id="menu-toggle"
+      class="md:hidden p-2 text-text/70 hover:text-text"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+
+    <ul class="hidden md:flex items-center gap-8 font-ui text-sm tracking-wide">
+      {navItems.map(item => (
+        <li>
+          <a href={item.href} class="text-text/70 hover:text-accent transition-colors">
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+
+  <div id="mobile-menu" class="hidden md:hidden border-t border-secondary/20">
+    <ul class="px-6 py-4 space-y-3 font-ui text-sm">
+      {navItems.map(item => (
+        <li>
+          <a href={item.href} class="block text-text/70 hover:text-accent transition-colors py-1">
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+
+  toggle?.addEventListener('click', () => {
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!expanded));
+    menu?.classList.toggle('hidden');
+  });
+</script>

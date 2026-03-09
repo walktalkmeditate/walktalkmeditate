@@ -1,0 +1,35 @@
+description: >
+  Deep questions designed for Jeffersonian-style evening group discussions.
+  Each can sustain an hour of conversation with the whole group.
+  One question per evening — go deep, not wide.
+questions:
+  - text: "How do you define wisdom — and has your definition changed over time?"
+    stage: opening
+  - text: "What does leading a meaningful life look like to you?"
+    stage: opening
+  - text: "What does unconditional love mean to you? Have you experienced it?"
+    stage: opening
+  - text: "What experiences proved transformational or catalytic in your personal growth?"
+    stage: middle
+  - text: "How has facing your own mortality impacted or shaped you?"
+    stage: middle
+  - text: "What key insights or shifts in perspective changed you profoundly?"
+    stage: middle
+  - text: "How do you approach understanding differing worldviews or perspectives?"
+    stage: middle
+  - text: "What complexities around life and human nature still mystify you?"
+    stage: middle
+  - text: "How do you nurture acceptance, surrender, or trust in what is beyond your control?"
+    stage: middle
+  - text: "What old stories, narratives, or identities have you intentionally shed or transformed?"
+    stage: middle
+  - text: "When is sitting together in silence more powerful than speaking?"
+    stage: closing
+  - text: "How do you reconcile the past to live more fully in the present?"
+    stage: closing
+  - text: "What does dying with dignity look like to you?"
+    stage: closing
+  - text: "What impact do you most hope your life will have?"
+    stage: closing
+  - text: "How comfortable are you with the reality that life continues on without you?"
+    stage: closing

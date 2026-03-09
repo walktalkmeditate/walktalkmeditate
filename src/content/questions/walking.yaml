@@ -1,0 +1,55 @@
+description: >
+  Lighter questions designed for side-by-side conversations while walking.
+  Easy to discuss in motion without stopping — they invite depth
+  without requiring heavy emotional processing.
+questions:
+  - text: "What is your most treasured childhood memory?"
+    stage: opening
+  - text: "If you could live anywhere in the world, where would it be — and why?"
+    stage: opening
+  - text: "What brings you true happiness?"
+    stage: opening
+  - text: "What positive habits have improved your life over time?"
+    stage: opening
+  - text: "What energizes you and makes you excited to start your day?"
+    stage: opening
+  - text: "What is the most adventurous thing you've ever done?"
+    stage: opening
+  - text: "What would constitute a 'perfect' day for you?"
+    stage: opening
+  - text: "What creative gifts or passions fill you with a sense of aliveness?"
+    stage: middle
+  - text: "What simple pleasures or rituals bring you peace?"
+    stage: middle
+  - text: "When do you feel most alive?"
+    stage: middle
+  - text: "What do you still hope to learn or understand better?"
+    stage: middle
+  - text: "How have your values and priorities evolved throughout your life?"
+    stage: middle
+  - text: "What brings you into a state of flow, wonder, and timelessness?"
+    stage: middle
+  - text: "How do you stay inspired and curious over time?"
+    stage: middle
+  - text: "What experiences create deep contentment or satisfaction for you?"
+    stage: middle
+  - text: "How do you reconcile differing personalities or interests in relationships?"
+    stage: middle
+  - text: "What teachings about love, empathy, or forgiveness have you taken to heart?"
+    stage: middle
+  - text: "How does practicing presence transform your experience of everyday life?"
+    stage: closing
+  - text: "What new perspectives or meanings are you currently integrating into your life?"
+    stage: closing
+  - text: "What matters to you now that didn't used to — or vice versa?"
+    stage: closing
+  - text: "How do you actively nurture gratitude, wonder, and joy?"
+    stage: closing
+  - text: "What spiritual practices or rituals enrich your closest relationships?"
+    stage: closing
+  - text: "If happiness was the national currency, what kind of work would make you rich?"
+    stage: closing
+  - text: "What memories elicit a deep sense of joy when recalled?"
+    stage: closing
+  - text: "What is one thing you're grateful for today?"
+    stage: closing

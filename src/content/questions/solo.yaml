@@ -1,0 +1,34 @@
+description: >
+  Introspective prompts for solo reflection — journaling, voice recording,
+  or quiet contemplation. Best used during rest stops or evening free time.
+questions:
+  - text: "What false belief did you shed that liberated you?"
+    stage: opening
+  - text: "Who had the most influence on the person you became — and what did you learn from them?"
+    stage: opening
+  - text: "What is the most important lesson life has taught you?"
+    stage: opening
+  - text: "What journey of self-discovery are you still on?"
+    stage: middle
+  - text: "What from the past are you still holding onto — and why can't you let it go?"
+    stage: middle
+  - text: "When do you feel fully aligned with your life's purpose?"
+    stage: middle
+  - text: "How do you cultivate self-honesty, even around uncomfortable truths?"
+    stage: middle
+  - text: "What new levels of freedom, authenticity, or peace have you uncovered?"
+    stage: middle
+  - text: "What harsh experiences proved most valuable in hindsight?"
+    stage: middle
+  - text: "How do you practice self-forgiveness and have compassion for your own mistakes?"
+    stage: middle
+  - text: "What provides you with a sense of awe, wonder, or transcendence?"
+    stage: closing
+  - text: "How do you want to be remembered after you're gone?"
+    stage: closing
+  - text: "What legacy do you hope to leave behind?"
+    stage: closing
+  - text: "If you could go back in time, what advice would you give your younger self?"
+    stage: closing
+  - text: "What causes or values are you willing to fight for?"
+    stage: closing
