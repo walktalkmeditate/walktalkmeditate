@@ -13,7 +13,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -42,9 +42,17 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
     <ViewTransitions />
     <title>{title}</title>
+    <script is:inline>
+      (function() {
+        var stored = localStorage.getItem('theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = stored || (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
   </head>
-  <body class="min-h-screen">
-    <div id="reading-progress" class="fixed top-0 left-0 h-[1px] bg-sage/40 z-[100] transition-none" style="width: 0%" />
+  <body class="min-h-screen dark:bg-dusk-950">
+    <div id="reading-progress" class="fixed top-0 left-0 h-[1px] bg-sage/40 dark:bg-sage-light/40 z-[100] transition-none" style="width: 0%" />
     <div id="particles" class="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true" />
     <Particles />
     <div class="relative z-10">
