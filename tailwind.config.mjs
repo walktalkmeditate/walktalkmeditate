@@ -4,19 +4,31 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: '#FAFAF5',
-        text: '#2D2B28',
-        accent: '#7C9070',
-        secondary: '#C4B5A0',
-        highlight: '#D4A574',
+        sand: {
+          50: '#FAFAF7',
+          100: '#F5F5F0',
+          200: '#E8E6DF',
+          300: '#D4D1C7',
+          400: '#B5B1A4',
+          500: '#918C7E',
+          600: '#6E6A5E',
+          700: '#4A4740',
+          800: '#2D2B28',
+          900: '#1A1917',
+        },
+        sage: '#7C9070',
       },
       fontFamily: {
-        heading: ['"Cormorant Garamond"', 'serif'],
-        body: ['"Source Serif 4"', 'serif'],
+        heading: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+        body: ['"Source Serif 4"', 'Georgia', 'serif'],
         ui: ['Inter', 'system-ui', 'sans-serif'],
       },
       maxWidth: {
-        prose: '65ch',
+        prose: '38rem',
+        wide: '48rem',
+      },
+      letterSpacing: {
+        display: '-0.02em',
       },
     },
   },

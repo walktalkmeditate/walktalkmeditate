@@ -13,13 +13,13 @@ interface Props {
 const { title, description, section } = Astro.props;
 ---
 
-<BaseLayout title={`${title} — walk ⬡ talk ⬡ meditate`} description={description}>
+<BaseLayout title={`${title} — walk · talk · meditate`} description={description}>
   <Header />
-  <main class="max-w-5xl mx-auto px-6 py-12 md:py-20">
-    <div class:list={['flex gap-16', section ? '' : 'justify-center']}>
+  <main class="max-w-wide mx-auto px-6 pb-12">
+    <div class:list={['flex gap-20', section ? '' : 'justify-center']}>
       {section && <Navigation section={section} />}
       <article class="prose-content min-w-0 flex-1">
-        <h1 class="text-accent mb-8">{title}</h1>
+        <h1 class="mb-12 text-sand-800">{title}</h1>
         <slot />
       </article>
     </div>

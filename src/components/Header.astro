@@ -11,27 +11,27 @@ const navItems = [
 ];
 ---
 
-<header class="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-secondary/20">
-  <nav class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
-    <a href={`${base}`} class="font-heading text-xl md:text-2xl font-semibold text-text hover:text-accent transition-colors">
-      walk ⬡ talk ⬡ meditate
+<header class="pt-8 pb-6 md:pt-12 md:pb-8">
+  <nav class="max-w-wide mx-auto px-6 flex items-center justify-between">
+    <a href={`${base}`} class="font-heading text-lg md:text-xl text-sand-800 hover:text-sage transition-colors tracking-display">
+      walk · talk · meditate
     </a>
 
     <button
       id="menu-toggle"
-      class="md:hidden p-2 text-text/70 hover:text-text"
+      class="md:hidden p-2 text-sand-400 hover:text-sand-600"
       aria-label="Toggle menu"
       aria-expanded="false"
     >
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 6h16M4 12h16M4 18h16" />
       </svg>
     </button>
 
-    <ul class="hidden md:flex items-center gap-8 font-ui text-sm tracking-wide">
+    <ul class="hidden md:flex items-center gap-8 font-ui text-[13px] tracking-wide">
       {navItems.map(item => (
         <li>
-          <a href={item.href} class="text-text/70 hover:text-accent transition-colors">
+          <a href={item.href} class="text-sand-400 hover:text-sand-700 transition-colors">
             {item.label}
           </a>
         </li>
@@ -39,11 +39,11 @@ const navItems = [
     </ul>
   </nav>
 
-  <div id="mobile-menu" class="hidden md:hidden border-t border-secondary/20">
-    <ul class="px-6 py-4 space-y-3 font-ui text-sm">
+  <div id="mobile-menu" class="hidden md:hidden">
+    <ul class="max-w-wide mx-auto px-6 pt-4 pb-2 space-y-2 font-ui text-sm">
       {navItems.map(item => (
         <li>
-          <a href={item.href} class="block text-text/70 hover:text-accent transition-colors py-1">
+          <a href={item.href} class="block text-sand-400 hover:text-sand-700 transition-colors py-1">
             {item.label}
           </a>
         </li>

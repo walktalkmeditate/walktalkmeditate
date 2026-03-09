@@ -10,9 +10,9 @@ const { description, questions } = entry!.data;
 <ContentLayout title="Walking Questions" section="questions" description="Side-by-side conversation prompts for walking.">
   <p>{description}</p>
 
-  <div class="grid gap-4 mt-8 not-prose">
-    {questions.map((q, i) => (
-      <QuestionCard text={q.text} stage={q.stage} index={i + 1} />
+  <div class="mt-10 not-prose">
+    {questions.map((q) => (
+      <QuestionCard text={q.text} stage={q.stage} />
     ))}
   </div>
 </ContentLayout>

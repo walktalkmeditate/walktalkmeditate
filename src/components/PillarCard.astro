@@ -1,23 +1,16 @@
 ---
 interface Props {
   title: string;
-  symbol: string;
   description: string;
   href: string;
 }
 
-const { title, symbol, description, href } = Astro.props;
+const { title, description, href } = Astro.props;
 ---
 
-<a
-  href={href}
-  class="group block p-8 rounded-2xl bg-white/50 border border-secondary/20
-         hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5
-         transition-all duration-300"
->
-  <div class="text-4xl mb-4">{symbol}</div>
-  <h3 class="font-heading text-2xl font-semibold text-text group-hover:text-accent transition-colors mb-3">
+<a href={href} class="group block">
+  <h3 class="font-heading text-3xl md:text-4xl font-light text-sand-800 group-hover:text-sage transition-colors tracking-display mb-4">
     {title}
   </h3>
-  <p class="text-text/60 leading-relaxed">{description}</p>
+  <p class="text-sand-500 leading-relaxed text-base">{description}</p>
 </a>

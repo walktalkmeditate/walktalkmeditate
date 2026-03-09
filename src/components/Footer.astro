@@ -2,13 +2,14 @@
 const base = import.meta.env.BASE_URL;
 ---
 
-<footer class="border-t border-secondary/20 mt-24">
-  <div class="max-w-5xl mx-auto px-6 py-12 text-center font-ui text-sm text-text/50">
-    <p>
-      <a href={`${base}ethos/open-source/`} class="hover:text-accent transition-colors">Open source</a>
-      &nbsp;·&nbsp;
-      <a href="https://github.com/walktalkmeditate/walktalkmeditate" class="hover:text-accent transition-colors">GitHub</a>
-    </p>
-    <p class="mt-2">walk ⬡ talk ⬡ meditate</p>
+<footer class="mt-32 mb-16">
+  <div class="max-w-wide mx-auto px-6">
+    <div class="border-t border-sand-200 pt-8 font-ui text-xs text-sand-400 flex justify-between items-center">
+      <span>walk · talk · meditate</span>
+      <div class="flex gap-6">
+        <a href={`${base}ethos/open-source/`} class="hover:text-sand-600 transition-colors">Open source</a>
+        <a href="https://github.com/walktalkmeditate/walktalkmeditate" class="hover:text-sand-600 transition-colors">GitHub</a>
+      </div>
+    </div>
   </div>
 </footer>

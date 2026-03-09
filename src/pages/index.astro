@@ -7,66 +7,70 @@ import PillarCard from '../components/PillarCard.astro';
 const base = import.meta.env.BASE_URL;
 ---
 
-<BaseLayout title="walk ⬡ talk ⬡ meditate">
+<BaseLayout title="walk · talk · meditate">
   <Header />
 
-  <main>
-    <section class="max-w-4xl mx-auto px-6 pt-20 pb-16 md:pt-32 md:pb-24 text-center">
-      <h1 class="font-heading text-5xl md:text-7xl font-semibold text-text mb-6 tracking-tight">
-        walk ⬡ talk ⬡ meditate
+  <main class="max-w-wide mx-auto px-6">
+    <section class="pt-16 pb-24 md:pt-28 md:pb-36">
+      <h1 class="font-heading text-5xl sm:text-6xl md:text-[5.5rem] font-light text-sand-800 tracking-display leading-[1.05]">
+        walk · talk · meditate
       </h1>
-      <p class="text-xl md:text-2xl text-text/60 font-body max-w-2xl mx-auto leading-relaxed">
-        An open-source pilgrimage framework for harmonizing body, mind, and spirit.
+      <p class="mt-6 text-xl md:text-2xl text-sand-400 font-heading font-light leading-relaxed max-w-lg">
+        An open-source pilgrimage framework.
       </p>
     </section>
 
-    <section class="max-w-4xl mx-auto px-6 pb-16">
-      <div class="prose-content text-center">
-        <p class="text-lg text-text/70">
-          Inspired by the walk-and-talk tradition — small group walks with deep conversations.
-          Adding meditation as an equal third pillar transforms it into something more:
-          a pilgrimage anyone can take, solo or with a group, local or abroad.
+    <div class="border-t border-sand-200" />
+
+    <section class="py-20 md:py-28">
+      <div class="max-w-prose">
+        <p class="text-sand-600 text-lg leading-relaxed">
+          Inspired by the walk-and-talk tradition — small group walks with deep
+          conversations. Adding meditation as an equal third pillar transforms it
+          into something more: a pilgrimage anyone can take, solo or with a group,
+          local or abroad.
         </p>
-        <p class="text-lg text-text/70">
-          This is not another travel destination optimized for sightseeing and sensory overload.
-          <strong class="text-text">Slow and chill is the motto. Relax and release is the practice.
-          Peace and harmony is the way.</strong>
+        <p class="mt-6 text-sand-600 text-lg leading-relaxed">
+          This is not another travel destination optimized for sightseeing.
+          <span class="text-sand-800">Slow and chill is the motto. Relax and release
+          is the practice. Peace and harmony is the way.</span>
         </p>
       </div>
     </section>
 
-    <section class="max-w-5xl mx-auto px-6 pb-20">
-      <div class="grid md:grid-cols-3 gap-6">
+    <div class="border-t border-sand-200" />
+
+    <section class="py-20 md:py-28">
+      <div class="grid md:grid-cols-3 gap-12 md:gap-16">
         <PillarCard
           title="Walk"
-          symbol="🚶"
           description="Walking as practice, not transit. Side by side, step by step — strengthening the physical body."
           href={`${base}walk/`}
         />
         <PillarCard
           title="Talk"
-          symbol="💬"
           description="Deep reflection and connection, not small talk. Ask and share your unique perspective of reality."
           href={`${base}talk/`}
         />
         <PillarCard
           title="Meditate"
-          symbol="🧘"
           description="Seek the peace and calmness within. Harmonize your being with the group and the environment."
           href={`${base}meditate/`}
         />
       </div>
     </section>
 
-    <section class="max-w-3xl mx-auto px-6 pb-24 text-center">
+    <div class="border-t border-sand-200" />
+
+    <section class="py-20 md:py-28">
       <a
         href={`${base}guide/getting-started/`}
-        class="inline-block px-8 py-4 bg-accent text-white font-ui font-medium
-               rounded-full hover:bg-accent/90 transition-colors text-lg"
+        class="group inline-flex items-center gap-3 font-heading text-2xl md:text-3xl font-light text-sand-800 hover:text-sage transition-colors tracking-display"
       >
         Start your pilgrimage
+        <span class="text-sand-300 group-hover:text-sage group-hover:translate-x-1 transition-all">→</span>
       </a>
-      <p class="mt-6 text-text/50 font-ui text-sm">
+      <p class="mt-4 text-sand-400 font-ui text-sm">
         No gear required. Start tomorrow in your own town.
       </p>
     </section>

@@ -6,7 +6,7 @@ const base = import.meta.env.BASE_URL;
 
 <ContentLayout title="Questions" section="questions" description="Curated questions for walking, talking, and reflecting on pilgrimage.">
   <p>
-    We've curated 65 questions from the original 950 at
+    65 questions curated from the original 950 at
     <a href="https://savewisdom.org">savewisdom.org</a>, organized by
     how and when you'll use them.
   </p>
@@ -14,47 +14,43 @@ const base = import.meta.env.BASE_URL;
   <h2>How to Use</h2>
 
   <p>
-    Each question is tagged with a <strong>stage</strong> — opening, middle, or
-    closing — to help you choose based on where you are in your pilgrimage or
-    conversation. Opening questions are lighter and build connection. Middle
-    questions go deeper. Closing questions invite synthesis and reflection.
+    Each question is tagged with a stage — opening, middle, or
+    closing — to help you choose based on where you are in your journey.
+    Opening questions are lighter. Middle questions go deeper. Closing
+    questions invite synthesis.
   </p>
 
   <p>
-    Don't rush through them. One good question per walk or one per evening
-    discussion is more than enough. Let the question breathe.
+    One good question per walk or per evening discussion is enough. Let
+    it breathe.
   </p>
 
   <h2>By Context</h2>
 
-  <div class="grid gap-4 not-prose mt-6">
-    <a href={`${base}questions/walking/`} class="block p-6 rounded-xl bg-white/50 border border-secondary/15 hover:border-accent/30 transition-colors">
-      <h3 class="font-heading text-xl font-semibold text-text mb-2">Walking Questions</h3>
-      <p class="text-text/60 text-base">~25 lighter prompts for side-by-side conversations while in motion.</p>
+  <div class="mt-8 space-y-1 not-prose">
+    <a href={`${base}questions/walking/`} class="group flex justify-between items-baseline py-4 border-b border-sand-100">
+      <span class="font-heading text-xl text-sand-800 group-hover:text-sage transition-colors tracking-display">Walking</span>
+      <span class="font-ui text-xs text-sand-300">25 questions</span>
     </a>
-
-    <a href={`${base}questions/evening/`} class="block p-6 rounded-xl bg-white/50 border border-secondary/15 hover:border-accent/30 transition-colors">
-      <h3 class="font-heading text-xl font-semibold text-text mb-2">Evening Discussion</h3>
-      <p class="text-text/60 text-base">~15 deep questions for Jeffersonian-style group conversations. One per evening.</p>
+    <a href={`${base}questions/evening/`} class="group flex justify-between items-baseline py-4 border-b border-sand-100">
+      <span class="font-heading text-xl text-sand-800 group-hover:text-sage transition-colors tracking-display">Evening Discussion</span>
+      <span class="font-ui text-xs text-sand-300">15 questions</span>
     </a>
-
-    <a href={`${base}questions/solo/`} class="block p-6 rounded-xl bg-white/50 border border-secondary/15 hover:border-accent/30 transition-colors">
-      <h3 class="font-heading text-xl font-semibold text-text mb-2">Solo Reflection</h3>
-      <p class="text-text/60 text-base">~15 introspective prompts for journaling or voice recording during rest stops.</p>
+    <a href={`${base}questions/solo/`} class="group flex justify-between items-baseline py-4 border-b border-sand-100">
+      <span class="font-heading text-xl text-sand-800 group-hover:text-sage transition-colors tracking-display">Solo Reflection</span>
+      <span class="font-ui text-xs text-sand-300">15 questions</span>
     </a>
-
-    <a href={`${base}questions/morning/`} class="block p-6 rounded-xl bg-white/50 border border-secondary/15 hover:border-accent/30 transition-colors">
-      <h3 class="font-heading text-xl font-semibold text-text mb-2">Morning Seeds</h3>
-      <p class="text-text/60 text-base">~10 one-sentence prompts to carry into the day from morning meditation.</p>
+    <a href={`${base}questions/morning/`} class="group flex justify-between items-baseline py-4 border-b border-sand-100">
+      <span class="font-heading text-xl text-sand-800 group-hover:text-sage transition-colors tracking-display">Morning Seeds</span>
+      <span class="font-ui text-xs text-sand-300">10 questions</span>
     </a>
   </div>
 
   <h2>Credit</h2>
 
   <p>
-    All questions are sourced from the 950 questions at
-    <a href="https://savewisdom.org">savewisdom.org</a>. We've selected the ones
-    most relevant to pilgrimage — open-ended, cross-cultural, and designed to
-    invite depth rather than quick answers.
+    All questions sourced from <a href="https://savewisdom.org">savewisdom.org</a>.
+    We selected those most relevant to pilgrimage — open-ended, cross-cultural,
+    designed to invite depth.
   </p>
 </ContentLayout>
