@@ -13,83 +13,96 @@
     @apply font-body text-lg leading-relaxed;
   }
 
-  h1, h2, h3, h4 {
-    @apply font-heading tracking-display;
-  }
-
-  h1 { @apply text-4xl sm:text-5xl md:text-6xl font-light leading-[1.1]; }
-  h2 { @apply text-2xl sm:text-3xl md:text-4xl font-light leading-tight; }
-  h3 { @apply text-xl sm:text-2xl font-normal leading-snug; }
-  h4 { @apply text-lg sm:text-xl font-normal; }
-
   ::selection {
     @apply bg-sage/20;
   }
 }
 
-@layer components {
-  .prose-content {
-    @apply max-w-prose;
-  }
+.prose-content {
+  @apply max-w-prose;
+}
 
-  .prose-content p {
-    @apply mb-7 text-sand-700;
-  }
+.prose-content p {
+  @apply mb-7 text-sand-700 leading-relaxed;
+}
 
-  .prose-content h2 {
-    @apply mt-20 mb-6 text-sand-800;
-  }
+.prose-content h1 {
+  @apply font-heading text-4xl sm:text-5xl md:text-6xl font-light leading-[1.1] tracking-display mb-12;
+}
 
-  .prose-content h3 {
-    @apply mt-14 mb-4 text-sand-800;
-  }
+.prose-content h2 {
+  @apply font-heading text-2xl sm:text-3xl md:text-4xl font-light leading-tight tracking-display
+         mt-20 mb-6 text-sand-800;
+}
 
-  .prose-content ul, .prose-content ol {
-    @apply mb-7 pl-5 text-sand-700;
-  }
+.prose-content h3 {
+  @apply font-heading text-xl sm:text-2xl font-normal leading-snug tracking-display
+         mt-14 mb-4 text-sand-800;
+}
 
-  .prose-content li {
-    @apply mb-2;
-  }
+.prose-content h4 {
+  @apply font-heading text-lg sm:text-xl font-normal tracking-display
+         mt-10 mb-3 text-sand-800;
+}
 
-  .prose-content ul li {
-    @apply list-disc marker:text-sand-300;
-  }
+.prose-content ul,
+.prose-content ol {
+  @apply mb-7 pl-5 text-sand-700;
+}
 
-  .prose-content ol li {
-    @apply list-decimal marker:text-sand-400;
-  }
+.prose-content li {
+  @apply mb-3 leading-relaxed;
+}
 
-  .prose-content blockquote {
-    @apply pl-6 my-10 text-sand-500 italic border-l border-sand-200;
-  }
+.prose-content ul > li {
+  @apply list-disc;
+}
 
-  .prose-content a {
-    @apply text-sand-800 underline decoration-sand-300 underline-offset-[3px]
-           hover:decoration-sage transition-colors;
-  }
+.prose-content ul > li::marker {
+  @apply text-sand-300;
+}
 
-  .prose-content strong {
-    @apply font-semibold text-sand-800;
-  }
+.prose-content ol > li {
+  @apply list-decimal;
+}
 
-  .prose-content hr {
-    @apply my-16 border-sand-200;
-  }
+.prose-content ol > li::marker {
+  @apply text-sand-400;
+}
 
-  .prose-content table {
-    @apply w-full mb-7 text-base;
-  }
+.prose-content blockquote {
+  @apply pl-6 my-10 text-sand-500 italic border-l border-sand-200;
+}
 
-  .prose-content thead {
-    @apply border-b border-sand-200;
-  }
+.prose-content blockquote p {
+  @apply text-sand-500;
+}
 
-  .prose-content th {
-    @apply text-left font-ui text-xs uppercase tracking-widest text-sand-400 px-4 py-3;
-  }
+.prose-content a {
+  @apply text-sand-800 underline decoration-sand-300 underline-offset-[3px]
+         hover:decoration-sage transition-colors;
+}
 
-  .prose-content td {
-    @apply px-4 py-3 text-sand-700 border-b border-sand-100;
-  }
+.prose-content strong {
+  @apply font-semibold text-sand-800;
+}
+
+.prose-content hr {
+  @apply my-16 border-sand-200;
+}
+
+.prose-content table {
+  @apply w-full mb-7 text-base;
+}
+
+.prose-content thead {
+  @apply border-b border-sand-200;
+}
+
+.prose-content th {
+  @apply text-left font-ui text-xs uppercase tracking-[0.15em] text-sand-400 px-4 py-3;
+}
+
+.prose-content td {
+  @apply px-4 py-3 text-sand-700 border-b border-sand-100;
 }
