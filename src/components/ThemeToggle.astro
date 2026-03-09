@@ -1,0 +1,61 @@
+---
+---
+
+<button
+  id="theme-toggle"
+  class="p-2 text-sand-400 hover:text-sand-600 dark:text-dusk-400 dark:hover:text-dusk-200 transition-colors"
+  aria-label="Toggle theme"
+>
+  <svg id="icon-campfire" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 3c-1 4-4 6-4 10a4 4 0 0 0 8 0c0-4-3-6-4-10z" />
+    <path d="M8 21h8" />
+    <path d="M6 21l2-4" />
+    <path d="M18 21l-2-4" />
+  </svg>
+  <svg id="icon-stars" class="w-5 h-5 hidden" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+    <circle cx="6" cy="6" r="1.5" />
+    <circle cx="18" cy="4" r="1" />
+    <circle cx="14" cy="10" r="1.5" />
+    <circle cx="4" cy="14" r="1" />
+    <circle cx="20" cy="16" r="1.5" />
+    <circle cx="10" cy="18" r="1" />
+  </svg>
+</button>
+
+<script>
+  function initThemeToggle() {
+    const btn = document.getElementById('theme-toggle');
+    const iconCampfire = document.getElementById('icon-campfire');
+    const iconStars = document.getElementById('icon-stars');
+    if (!btn || !iconCampfire || !iconStars) return;
+
+    function updateIcons() {
+      var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      iconCampfire.classList.toggle('hidden', isDark);
+      iconStars.classList.toggle('hidden', !isDark);
+    }
+
+    updateIcons();
+
+    btn.addEventListener('click', function() {
+      var current = document.documentElement.getAttribute('data-theme');
+      var next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      updateIcons();
+      window.dispatchEvent(new CustomEvent('theme-changed', { detail: { theme: next } }));
+    });
+  }
+
+  initThemeToggle();
+  document.addEventListener('astro:after-swap', initThemeToggle);
+</script>
+
+<style>
+  #theme-toggle {
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  #theme-toggle:active {
+    transform: scale(0.9);
+  }
+</style>
