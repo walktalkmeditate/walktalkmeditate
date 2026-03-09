@@ -9,8 +9,16 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  html.theme-transition,
+  html.theme-transition *,
+  html.theme-transition *::before,
+  html.theme-transition *::after {
+    transition: background-color 0.6s ease, color 0.4s ease, border-color 0.4s ease, fill 0.4s ease, stroke 0.4s ease !important;
+  }
+
   [data-theme="dark"] {
-    @apply bg-dusk-950 text-dusk-200;
+    background-color: #141311;
+    color: #D4D1C7;
   }
 
   body {
@@ -22,7 +30,7 @@
   }
 
   [data-theme="dark"] ::selection {
-    @apply bg-sage-light/20;
+    background-color: rgba(143, 163, 130, 0.2);
   }
 }
 
@@ -75,7 +83,7 @@
 }
 
 [data-theme="dark"] .ripple {
-  border-color: rgba(212, 209, 199, 0.15);
+  display: none;
 }
 
 @keyframes ripple-expand {

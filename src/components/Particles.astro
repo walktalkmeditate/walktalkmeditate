@@ -17,9 +17,8 @@
       scheduleShootingStar(container);
     } else {
       spawnFireflies(container);
+      spawnRipples(container);
     }
-
-    spawnRipples(container);
   }
 
   function spawnFireflies(container) {
@@ -94,7 +93,15 @@
   }
 
   window.addEventListener('theme-changed', function() {
-    spawnEffects();
+    var container = document.getElementById('particles');
+    if (container) {
+      container.style.transition = 'opacity 0.4s ease';
+      container.style.opacity = '0';
+      setTimeout(function() {
+        spawnEffects();
+        container.style.opacity = '1';
+      }, 400);
+    }
   });
 
   spawnEffects();

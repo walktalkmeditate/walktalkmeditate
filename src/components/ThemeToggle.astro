@@ -3,7 +3,7 @@
 
 <button
   id="theme-toggle"
-  class="p-2 text-sand-400 hover:text-sand-600 dark:text-dusk-400 dark:hover:text-dusk-200 transition-colors"
+  class="p-2 text-sand-400 hover:text-sand-600 dark:text-dusk-300 dark:hover:text-dusk-100 transition-colors"
   aria-label="Toggle theme"
 >
   <svg id="icon-campfire" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -40,10 +40,14 @@
     btn.addEventListener('click', function() {
       var current = document.documentElement.getAttribute('data-theme');
       var next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.classList.add('theme-transition');
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('theme', next);
       updateIcons();
       window.dispatchEvent(new CustomEvent('theme-changed', { detail: { theme: next } }));
+      setTimeout(function() {
+        document.documentElement.classList.remove('theme-transition');
+      }, 700);
     });
   }
 
