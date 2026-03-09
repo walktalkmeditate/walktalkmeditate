@@ -1,4 +1,5 @@
 ---
+import ThemeToggle from './ThemeToggle.astro';
 const base = import.meta.env.BASE_URL;
 
 const navItems = [
@@ -15,30 +16,34 @@ const navItems = [
   <nav class="max-w-wide mx-auto px-6 flex items-center justify-between">
     <a href={`${base}`} class="flex items-center gap-3 hover:opacity-70 transition-opacity" transition:name="site-title">
       <img src={`${base}logo-32.png`} alt="" width="28" height="28" class="opacity-80" />
-      <span class="font-heading text-lg md:text-xl text-sand-800 tracking-display">
+      <span class="font-heading text-lg md:text-xl text-sand-800 dark:text-dusk-100 tracking-display">
         walk <span class="breathing-dot"></span> talk <span class="breathing-dot"></span> meditate
       </span>
     </a>
 
-    <button
-      id="menu-toggle"
-      class="md:hidden p-2 text-sand-400 hover:text-sand-600"
-      aria-label="Toggle menu"
-      aria-expanded="false"
-    >
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 6h16M4 12h16M4 18h16" />
-      </svg>
-    </button>
+    <div class="flex items-center gap-2 md:hidden">
+      <ThemeToggle />
+      <button
+        id="menu-toggle"
+        class="p-2 text-sand-400 hover:text-sand-600 dark:text-dusk-400 dark:hover:text-dusk-200"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
 
     <ul class="hidden md:flex items-center gap-8 font-ui text-[13px] tracking-wide">
       {navItems.map(item => (
         <li>
-          <a href={item.href} class="nav-link text-sand-400 hover:text-sand-700 transition-colors">
+          <a href={item.href} class="nav-link text-sand-400 hover:text-sand-700 dark:text-dusk-400 dark:hover:text-dusk-200 transition-colors">
             {item.label}
           </a>
         </li>
       ))}
+      <li><ThemeToggle /></li>
     </ul>
   </nav>
 
@@ -46,7 +51,7 @@ const navItems = [
     <ul class="max-w-wide mx-auto px-6 pt-4 pb-2 space-y-2 font-ui text-sm">
       {navItems.map(item => (
         <li>
-          <a href={item.href} class="block text-sand-400 hover:text-sand-700 transition-colors py-1">
+          <a href={item.href} class="block text-sand-400 hover:text-sand-700 dark:text-dusk-400 dark:hover:text-dusk-200 transition-colors py-1">
             {item.label}
           </a>
         </li>
