@@ -3,14 +3,25 @@ import { ClientRouter } from 'astro:transitions';
 import '../styles/global.css';
 import Particles from '../components/Particles.astro';
 import ThemeToggle from '../components/ThemeToggle.astro';
+import StructuredData from '../components/StructuredData.astro';
+import type { StructuredDataInput } from '../lib/structuredData';
 
 interface Props {
   title: string;
   description?: string;
+  structuredData?: Partial<StructuredDataInput>;
 }
 
-const { title, description = 'An open-source pilgrimage framework for walking, talking, and meditating.' } = Astro.props;
+const { title, description = 'An open-source pilgrimage framework for walking, talking, and meditating.', structuredData } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const structuredDataInput: StructuredDataInput = {
+  type: 'webpage',
+  url: canonicalURL.href,
+  title,
+  description,
+  ...structuredData,
+};
 ---
 
 <!doctype html>
@@ -42,6 +53,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     />
 
     <script defer src="https://analytics.walktalkmeditate.org/script.js" data-website-id="507df3e8-800c-4b96-aa36-14805b24b5ed" is:inline></script>
+    <StructuredData {...structuredDataInput} />
     <ClientRouter />
     <title>{title}</title>
     <script is:inline>

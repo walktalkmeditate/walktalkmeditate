@@ -1,0 +1,8 @@
+---
+import { buildGraph, type StructuredDataInput } from '../lib/structuredData';
+
+const graph = buildGraph(Astro.props as StructuredDataInput);
+const json = JSON.stringify(graph).replace(/</g, '\\u003c');
+---
+
+<script type="application/ld+json" is:inline set:html={json} />
