@@ -1,0 +1,54 @@
+---
+import ContentLayout from '../layouts/ContentLayout.astro';
+import { SITE_URL, IOS_STORE_URL, ANDROID_STORE_URL } from '../lib/structured-data';
+
+const base = import.meta.env.BASE_URL;
+const breadcrumbs = [
+  { name: 'Home', url: `${SITE_URL}/` },
+  { name: 'Pilgrim', url: `${SITE_URL}/pilgrim/` },
+];
+---
+
+<ContentLayout
+  title="Pilgrim"
+  description="The companion app for the walk · talk · meditate practice — privacy-first, open source, free forever."
+  structuredData={{ type: 'app', breadcrumbs }}
+>
+  <p>
+    walk · talk · meditate is the practice. <strong>Pilgrim</strong> is the tool you
+    carry on the path — a quiet, privacy-first companion for iPhone and Android. No
+    accounts, no analytics, no cloud. Open source, free forever.
+  </p>
+
+  <h2>The three pillars, in your pocket</h2>
+  <ul>
+    <li><strong>Walk</strong> — GPS route tracking and voice notes transcribed on-device, so a thought mid-walk is never lost.</li>
+    <li><strong>Talk</strong> — reflection prompts generated from your own voice notes and photos, alongside the curated <a href={`${base}questions/`}>65 questions</a>.</li>
+    <li><strong>Meditate</strong> — a walking-meditation breathing circle with ambient soundscapes and seven voice guides.</li>
+  </ul>
+
+  <p>
+    Everything stays on your phone. Voice transcription runs entirely on-device. The
+    full source is on <a href="https://github.com/walktalkmeditate">GitHub</a>.
+  </p>
+
+  <div class="mt-10 flex flex-wrap gap-4 not-prose">
+    <a
+      href={IOS_STORE_URL}
+      class="inline-flex items-center font-ui text-sm px-5 py-3 rounded-lg bg-sand-800 text-sand-50 dark:bg-dusk-100 dark:text-dusk-900 hover:opacity-80 transition-opacity"
+    >
+      Download for iOS
+    </a>
+    <a
+      href={ANDROID_STORE_URL}
+      class="inline-flex items-center font-ui text-sm px-5 py-3 rounded-lg border border-sand-300 text-sand-700 dark:border-dusk-700 dark:text-dusk-200 hover:border-sand-500 transition-colors"
+    >
+      Download for Android
+    </a>
+  </div>
+
+  <p class="mt-8 font-ui text-sm text-sand-400 dark:text-dusk-300 not-prose">
+    Full details and the contemplative-instrument almanac live at
+    <a href="https://pilgrimapp.org" class="underline hover:text-sand-600 dark:hover:text-dusk-200">pilgrimapp.org</a>.
+  </p>
+</ContentLayout>

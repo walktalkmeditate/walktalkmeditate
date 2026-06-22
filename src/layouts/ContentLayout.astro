@@ -3,15 +3,19 @@ import BaseLayout from './BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Navigation from '../components/Navigation.astro';
+import { SITE_URL, type StructuredDataInput, type PageType, type Breadcrumb } from '../lib/structured-data';
 
 interface Props {
   title?: string;
   description?: string;
   section?: 'guide' | 'ethos' | 'questions';
+  structuredData?: Partial<StructuredDataInput>;
   frontmatter?: {
     title?: string;
     description?: string;
     section?: 'guide' | 'ethos' | 'questions';
+    pageType?: PageType;
+    howToSteps?: string[];
   };
 }
 
@@ -19,9 +23,35 @@ const fm = Astro.props.frontmatter;
 const title = Astro.props.title ?? fm?.title ?? '';
 const description = Astro.props.description ?? fm?.description;
 const section = Astro.props.section ?? fm?.section;
+
+const sectionMeta: Record<string, Breadcrumb> = {
+  guide: { name: 'Guide', url: `${SITE_URL}/guide/getting-started/` },
+  ethos: { name: 'Ethos', url: `${SITE_URL}/ethos/open-source/` },
+  questions: { name: 'Questions', url: `${SITE_URL}/questions/` },
+};
+
+const currentUrl = new URL(Astro.url.pathname, Astro.site).href;
+const breadcrumbs: Breadcrumb[] = [{ name: 'Home', url: `${SITE_URL}/` }];
+if (section && sectionMeta[section]) {
+  breadcrumbs.push(sectionMeta[section]);
+  if (sectionMeta[section].url !== currentUrl) {
+    breadcrumbs.push({ name: title, url: currentUrl });
+  }
+} else if (title) {
+  breadcrumbs.push({ name: title, url: currentUrl });
+}
+
+const structuredData: Partial<StructuredDataInput> = {
+  type: fm?.pageType ?? 'webpage',
+  title,
+  description,
+  breadcrumbs,
+  ...(fm?.howToSteps ? { howToSteps: fm.howToSteps } : {}),
+  ...Astro.props.structuredData,
+};
 ---
 
-<BaseLayout title={`${title} — walk · talk · meditate`} description={description}>
+<BaseLayout title={`${title} — walk · talk · meditate`} description={description} structuredData={structuredData}>
   <Header />
   <main class="max-w-wide mx-auto px-6 pb-12">
     <div class:list={['flex gap-20', section ? '' : 'justify-center']}>

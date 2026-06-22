@@ -4,7 +4,7 @@ import ContentLayout from '../../layouts/ContentLayout.astro';
 const base = import.meta.env.BASE_URL;
 ---
 
-<ContentLayout title="Questions" section="questions" description="Curated questions for walking, talking, and reflecting on pilgrimage.">
+<ContentLayout title="Questions" section="questions" description="Curated questions for walking, talking, and reflecting on pilgrimage." structuredData={{ type: 'collection' }}>
   <p>
     65 questions curated from the original 950 at
     <a href="https://savewisdom.org">savewisdom.org</a>, organized by

@@ -7,7 +7,7 @@ const entry = await getEntry('questions', 'walking');
 const { description, questions } = entry!.data;
 ---
 
-<ContentLayout title="Walking Questions" section="questions" description="Side-by-side conversation prompts for walking.">
+<ContentLayout title="Walking Questions" section="questions" description="Side-by-side conversation prompts for walking." structuredData={{ type: 'questionList', items: questions.map((q) => q.text) }}>
   <p>{description}</p>
 
   <div class="mt-10 not-prose">

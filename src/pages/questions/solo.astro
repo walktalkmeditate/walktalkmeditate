@@ -7,7 +7,7 @@ const entry = await getEntry('questions', 'solo');
 const { description, questions } = entry!.data;
 ---
 
-<ContentLayout title="Solo Reflection" section="questions" description="Introspective prompts for journaling and voice recording.">
+<ContentLayout title="Solo Reflection" section="questions" description="Introspective prompts for journaling and voice recording." structuredData={{ type: 'questionList', items: questions.map((q) => q.text) }}>
   <p>{description}</p>
 
   <div class="mt-10 not-prose">
