@@ -59,7 +59,57 @@ export function websiteNode(): Node {
   };
 }
 
+function webPageNode(input: StructuredDataInput, schemaType: string, mainEntityId?: string): Node {
+  const node: Node = {
+    '@type': schemaType,
+    '@id': `${input.url}#webpage`,
+    url: input.url,
+    name: input.title,
+    description: input.description,
+    isPartOf: { '@id': WEBSITE_ID },
+    inLanguage: 'en',
+    primaryImageOfPage: OG_IMAGE,
+  };
+  if (input.breadcrumbs && input.breadcrumbs.length > 0) {
+    node.breadcrumb = { '@id': `${input.url}#breadcrumb` };
+  }
+  if (mainEntityId) {
+    node.mainEntity = { '@id': mainEntityId };
+  }
+  return node;
+}
+
+export function breadcrumbNode(url: string, crumbs: Breadcrumb[]): Node {
+  return {
+    '@type': 'BreadcrumbList',
+    '@id': `${url}#breadcrumb`,
+    itemListElement: crumbs.map((c, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: c.name,
+      item: c.url,
+    })),
+  };
+}
+
 export function buildGraph(input: StructuredDataInput): Record<string, unknown> {
   const graph: Node[] = [organizationNode(), websiteNode()];
+  const crumbs = input.breadcrumbs ?? [];
+  const pushBreadcrumb = () => {
+    if (crumbs.length > 0) graph.push(breadcrumbNode(input.url, crumbs));
+  };
+
+  switch (input.type) {
+    case 'collection':
+      graph.push(webPageNode(input, 'CollectionPage'));
+      pushBreadcrumb();
+      break;
+    case 'webpage':
+    default:
+      graph.push(webPageNode(input, 'WebPage'));
+      pushBreadcrumb();
+      break;
+  }
+
   return { '@context': 'https://schema.org', '@graph': graph };
 }
