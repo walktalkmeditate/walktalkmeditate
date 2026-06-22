@@ -4,7 +4,7 @@ import '../styles/global.css';
 import Particles from '../components/Particles.astro';
 import ThemeToggle from '../components/ThemeToggle.astro';
 import StructuredData from '../components/StructuredData.astro';
-import type { StructuredDataInput } from '../lib/structuredData';
+import { TAGLINE, type StructuredDataInput } from '../lib/structured-data';
 
 interface Props {
   title: string;
@@ -12,7 +12,7 @@ interface Props {
   structuredData?: Partial<StructuredDataInput>;
 }
 
-const { title, description = 'An open-source pilgrimage framework for walking, talking, and meditating.', structuredData } = Astro.props;
+const { title, description = TAGLINE, structuredData } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const structuredDataInput: StructuredDataInput = {

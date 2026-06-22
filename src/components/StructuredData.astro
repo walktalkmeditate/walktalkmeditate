@@ -1,7 +1,7 @@
 ---
-import { buildGraph, type StructuredDataInput } from '../lib/structuredData';
+import { buildGraph, type StructuredDataInput } from '../lib/structured-data';
 
-interface Props extends StructuredDataInput {}
+type Props = StructuredDataInput;
 
 const graph = buildGraph(Astro.props);
 const json = JSON.stringify(graph).replace(/</g, '\\u003c');

@@ -1,6 +1,6 @@
 ---
 import ContentLayout from '../layouts/ContentLayout.astro';
-import { SITE_URL } from '../lib/structuredData';
+import { SITE_URL, IOS_STORE_URL, ANDROID_STORE_URL } from '../lib/structured-data';
 
 const base = import.meta.env.BASE_URL;
 const breadcrumbs = [
@@ -34,13 +34,13 @@ const breadcrumbs = [
 
   <div class="mt-10 flex flex-wrap gap-4 not-prose">
     <a
-      href="https://apps.apple.com/app/pilgrim-mindful-walking/id6760921056"
+      href={IOS_STORE_URL}
       class="inline-flex items-center font-ui text-sm px-5 py-3 rounded-lg bg-sand-800 text-sand-50 dark:bg-dusk-100 dark:text-dusk-900 hover:opacity-80 transition-opacity"
     >
       Download for iOS
     </a>
     <a
-      href="https://play.google.com/store/apps/details?id=org.walktalkmeditate.pilgrim"
+      href={ANDROID_STORE_URL}
       class="inline-flex items-center font-ui text-sm px-5 py-3 rounded-lg border border-sand-300 text-sand-700 dark:border-dusk-700 dark:text-dusk-200 hover:border-sand-500 transition-colors"
     >
       Download for Android

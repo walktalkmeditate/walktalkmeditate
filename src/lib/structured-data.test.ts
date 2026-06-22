@@ -8,7 +8,7 @@ import {
   SAME_AS,
   mobileAppNode,
   APP_ID,
-} from './structuredData';
+} from './structured-data';
 
 describe('organizationNode', () => {
   it('is an Organization named Walk Talk Meditate with the shared @id', () => {
@@ -173,6 +173,21 @@ describe('howto graph', () => {
     const types = graph['@graph'].map((n) => n['@type']);
     expect(types).toContain('WebPage');
   });
+
+  it('links the HowTo to the page via @id and mainEntity', () => {
+    const url = 'https://walktalkmeditate.org/guide/getting-started/';
+    const graph = buildGraph({
+      type: 'howto',
+      url,
+      title: 'Getting Started',
+      description: 'Your on-ramp to a pilgrimage.',
+      howToSteps: ['Choose a route'],
+    });
+    const page = graph['@graph'].find((n) => n['@type'] === 'WebPage')!;
+    const howto = graph['@graph'].find((n) => n['@type'] === 'HowTo')!;
+    expect(howto['@id']).toBe(`${url}#howto`);
+    expect(page.mainEntity).toEqual({ '@id': `${url}#howto` });
+  });
 });
 
 describe('questionList graph', () => {
@@ -207,5 +222,20 @@ describe('questionList graph', () => {
       ],
     }) as { '@graph': Array<Record<string, unknown>> };
     expect(graph['@graph'].some((n) => n['@type'] === 'BreadcrumbList')).toBe(true);
+  });
+
+  it('links the ItemList to the page via @id and mainEntity', () => {
+    const url = 'https://walktalkmeditate.org/questions/morning/';
+    const graph = buildGraph({
+      type: 'questionList',
+      url,
+      title: 'Morning Seeds',
+      description: 'Prompts for morning meditation.',
+      items: ['What is alive in you?'],
+    });
+    const page = graph['@graph'].find((n) => n['@type'] === 'CollectionPage')!;
+    const list = graph['@graph'].find((n) => n['@type'] === 'ItemList')!;
+    expect(list['@id']).toBe(`${url}#items`);
+    expect(page.mainEntity).toEqual({ '@id': `${url}#items` });
   });
 });

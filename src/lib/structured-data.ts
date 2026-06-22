@@ -4,13 +4,16 @@ export const WEBSITE_ID = `${SITE_URL}/#website`;
 
 const LOGO_URL = `${SITE_URL}/logo-128.png`;
 const OG_IMAGE = `${SITE_URL}/og.png`;
-const TAGLINE = 'An open-source pilgrimage framework for walking, talking, and meditating.';
+export const TAGLINE = 'An open-source pilgrimage framework for walking, talking, and meditating.';
+
+export const IOS_STORE_URL = 'https://apps.apple.com/app/pilgrim-mindful-walking/id6760921056';
+export const ANDROID_STORE_URL = 'https://play.google.com/store/apps/details?id=org.walktalkmeditate.pilgrim';
+export const APP_STORE_URLS: string[] = [IOS_STORE_URL, ANDROID_STORE_URL];
 
 export const SAME_AS: string[] = [
   'https://pilgrimapp.org',
   'https://github.com/walktalkmeditate',
-  'https://apps.apple.com/app/pilgrim-mindful-walking/id6760921056',
-  'https://play.google.com/store/apps/details?id=org.walktalkmeditate.pilgrim',
+  ...APP_STORE_URLS,
   'https://mastodon.social/@pilgrimage',
   'https://bsky.app/profile/pilgrima.ge',
   'https://www.threads.com/@pilgrima.ge',
@@ -41,7 +44,7 @@ export function organizationNode(): Node {
     '@id': ORG_ID,
     name: 'Walk Talk Meditate',
     url: SITE_URL,
-    logo: LOGO_URL,
+    logo: { '@type': 'ImageObject', url: LOGO_URL },
     description: TAGLINE,
     sameAs: SAME_AS,
   };
@@ -94,11 +97,6 @@ export function breadcrumbNode(url: string, crumbs: Breadcrumb[]): Node {
 
 export const APP_ID = `${SITE_URL}/pilgrim/#app`;
 
-const APP_STORE_URLS: string[] = [
-  'https://apps.apple.com/app/pilgrim-mindful-walking/id6760921056',
-  'https://play.google.com/store/apps/details?id=org.walktalkmeditate.pilgrim',
-];
-
 export function mobileAppNode(): Node {
   return {
     '@type': 'MobileApplication',
@@ -123,6 +121,7 @@ export function mobileAppNode(): Node {
 function howToNode(input: StructuredDataInput): Node {
   return {
     '@type': 'HowTo',
+    '@id': `${input.url}#howto`,
     name: input.title,
     description: input.description,
     step: (input.howToSteps ?? []).map((s, i) => ({
@@ -137,6 +136,7 @@ function itemListNode(input: StructuredDataInput): Node {
   const items = input.items ?? [];
   return {
     '@type': 'ItemList',
+    '@id': `${input.url}#items`,
     name: input.title,
     numberOfItems: items.length,
     itemListElement: items.map((text, i) => ({
@@ -147,7 +147,12 @@ function itemListNode(input: StructuredDataInput): Node {
   };
 }
 
-export function buildGraph(input: StructuredDataInput): Record<string, unknown> {
+export interface SchemaGraph {
+  '@context': string;
+  '@graph': Record<string, unknown>[];
+}
+
+export function buildGraph(input: StructuredDataInput): SchemaGraph {
   const graph: Node[] = [organizationNode(), websiteNode()];
   const crumbs = input.breadcrumbs ?? [];
   const pushBreadcrumb = () => {
@@ -163,11 +168,11 @@ export function buildGraph(input: StructuredDataInput): Record<string, unknown> 
       pushBreadcrumb();
       break;
     case 'howto':
-      graph.push(webPageNode(input, 'WebPage'), howToNode(input));
+      graph.push(webPageNode(input, 'WebPage', `${input.url}#howto`), howToNode(input));
       pushBreadcrumb();
       break;
     case 'questionList':
-      graph.push(webPageNode(input, 'CollectionPage'), itemListNode(input));
+      graph.push(webPageNode(input, 'CollectionPage', `${input.url}#items`), itemListNode(input));
       pushBreadcrumb();
       break;
     case 'collection':

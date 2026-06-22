@@ -3,7 +3,7 @@ import BaseLayout from './BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Navigation from '../components/Navigation.astro';
-import { SITE_URL, type StructuredDataInput, type PageType, type Breadcrumb } from '../lib/structuredData';
+import { SITE_URL, type StructuredDataInput, type PageType, type Breadcrumb } from '../lib/structured-data';
 
 interface Props {
   title?: string;
@@ -37,6 +37,8 @@ if (section && sectionMeta[section]) {
   if (sectionMeta[section].url !== currentUrl) {
     breadcrumbs.push({ name: title, url: currentUrl });
   }
+} else if (title) {
+  breadcrumbs.push({ name: title, url: currentUrl });
 }
 
 const structuredData: Partial<StructuredDataInput> = {
