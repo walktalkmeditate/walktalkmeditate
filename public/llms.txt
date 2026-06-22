@@ -1,0 +1,48 @@
+# walk · talk · meditate — An open-source pilgrimage framework
+
+> walk · talk · meditate is an open-source framework for pilgrimage as
+> practice. Three equal pillars — walking as practice (not transit), deep
+> conversation (not small talk), and meditation — turn any walk, solo or
+> group, local or abroad, into a pilgrimage. No gear required. Start
+> tomorrow in your own town.
+
+## What it is
+
+A philosophy and a practical guide, not a product. Inspired by the
+walk-and-talk tradition, with meditation added as an equal third pillar.
+The motto: slow and chill. The practice: relax and release. The way:
+peace and harmony.
+
+## The three pillars
+
+- Walk — walking as practice, side by side, step by step.
+- Talk — deep reflection and connection; 65 curated questions for the journey.
+- Meditate — seeking the peace and calmness within.
+
+## Sections
+
+- Guide — getting started, planning, preparing, on the journey, coming home:
+  https://walktalkmeditate.org/guide/getting-started/
+- Questions — 65 curated prompts by context (walking, evening, solo, morning):
+  https://walktalkmeditate.org/questions/
+- Ethos — open source, the golden rule, radical presence:
+  https://walktalkmeditate.org/ethos/open-source/
+
+## Companion app
+
+Pilgrim is the app for this practice — a privacy-first walking and
+meditation companion for iOS and Android. No accounts, no analytics, no
+cloud; voice notes transcribed on-device; open source (GPLv3), free forever.
+
+- App + bridge page: https://walktalkmeditate.org/pilgrim/
+- Full app site: https://pilgrimapp.org
+
+## Related
+
+- GitHub org: https://github.com/walktalkmeditate
+- Open pilgrimage routes dataset: https://github.com/walktalkmeditate/open-pilgrimages
+- Community discussions: https://github.com/orgs/walktalkmeditate/discussions
+
+## License
+
+Content and code: open source. See the repository for details.
