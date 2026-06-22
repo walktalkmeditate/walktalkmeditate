@@ -92,6 +92,61 @@ export function breadcrumbNode(url: string, crumbs: Breadcrumb[]): Node {
   };
 }
 
+export const APP_ID = `${SITE_URL}/pilgrim/#app`;
+
+const APP_STORE_URLS: string[] = [
+  'https://apps.apple.com/app/pilgrim-mindful-walking/id6760921056',
+  'https://play.google.com/store/apps/details?id=org.walktalkmeditate.pilgrim',
+];
+
+export function mobileAppNode(): Node {
+  return {
+    '@type': 'MobileApplication',
+    '@id': APP_ID,
+    name: 'Pilgrim',
+    url: 'https://pilgrimapp.org',
+    operatingSystem: 'iOS, Android',
+    applicationCategory: 'HealthApplication',
+    description: 'A privacy-first walking and meditation companion — the app for the walk · talk · meditate practice.',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
+    },
+    isAccessibleForFree: true,
+    publisher: { '@id': ORG_ID },
+    sameAs: APP_STORE_URLS,
+  };
+}
+
+function howToNode(input: StructuredDataInput): Node {
+  return {
+    '@type': 'HowTo',
+    name: input.title,
+    description: input.description,
+    step: (input.howToSteps ?? []).map((s, i) => ({
+      '@type': 'HowToStep',
+      position: i + 1,
+      text: s,
+    })),
+  };
+}
+
+function itemListNode(input: StructuredDataInput): Node {
+  const items = input.items ?? [];
+  return {
+    '@type': 'ItemList',
+    name: input.title,
+    numberOfItems: items.length,
+    itemListElement: items.map((text, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: text,
+    })),
+  };
+}
+
 export function buildGraph(input: StructuredDataInput): Record<string, unknown> {
   const graph: Node[] = [organizationNode(), websiteNode()];
   const crumbs = input.breadcrumbs ?? [];
@@ -100,6 +155,21 @@ export function buildGraph(input: StructuredDataInput): Record<string, unknown> 
   };
 
   switch (input.type) {
+    case 'home':
+      graph.push(webPageNode(input, 'WebPage', ORG_ID), mobileAppNode());
+      break;
+    case 'app':
+      graph.push(webPageNode(input, 'WebPage', APP_ID), mobileAppNode());
+      pushBreadcrumb();
+      break;
+    case 'howto':
+      graph.push(webPageNode(input, 'WebPage'), howToNode(input));
+      pushBreadcrumb();
+      break;
+    case 'questionList':
+      graph.push(webPageNode(input, 'CollectionPage'), itemListNode(input));
+      pushBreadcrumb();
+      break;
     case 'collection':
       graph.push(webPageNode(input, 'CollectionPage'));
       pushBreadcrumb();

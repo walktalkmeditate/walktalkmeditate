@@ -6,6 +6,8 @@ import {
   ORG_ID,
   WEBSITE_ID,
   SAME_AS,
+  mobileAppNode,
+  APP_ID,
 } from './structuredData';
 import { breadcrumbNode } from './structuredData';
 
@@ -90,5 +92,86 @@ describe('collection graph', () => {
     const types = graph['@graph'].map((n) => n['@type']);
     expect(types).toContain('CollectionPage');
     expect(types).not.toContain('WebPage');
+  });
+});
+
+describe('mobileAppNode', () => {
+  it('is a free MobileApplication published by the org, pointing at pilgrimapp.org', () => {
+    const app = mobileAppNode();
+    expect(app['@type']).toBe('MobileApplication');
+    expect(app['@id']).toBe(APP_ID);
+    expect(app.url).toBe('https://pilgrimapp.org');
+    expect(app.publisher).toEqual({ '@id': ORG_ID });
+    expect(app.offers).toMatchObject({ price: '0', priceCurrency: 'USD' });
+  });
+});
+
+describe('home graph', () => {
+  it('has a WebPage whose mainEntity is the org, plus the Pilgrim app', () => {
+    const graph = buildGraph({
+      type: 'home',
+      url: 'https://walktalkmeditate.org/',
+      title: 'walk · talk · meditate',
+      description: 'An open-source pilgrimage framework.',
+    }) as { '@graph': Array<Record<string, unknown>> };
+    const page = graph['@graph'].find((n) => n['@type'] === 'WebPage')!;
+    expect(page.mainEntity).toEqual({ '@id': ORG_ID });
+    expect(graph['@graph'].some((n) => n['@type'] === 'MobileApplication')).toBe(true);
+  });
+});
+
+describe('app graph', () => {
+  it("has a WebPage whose mainEntity is the app's @id", () => {
+    const graph = buildGraph({
+      type: 'app',
+      url: 'https://walktalkmeditate.org/pilgrim/',
+      title: 'Pilgrim',
+      description: 'The app for the practice.',
+      breadcrumbs: [
+        { name: 'Home', url: 'https://walktalkmeditate.org/' },
+        { name: 'Pilgrim', url: 'https://walktalkmeditate.org/pilgrim/' },
+      ],
+    }) as { '@graph': Array<Record<string, unknown>> };
+    const page = graph['@graph'].find((n) => n['@type'] === 'WebPage')!;
+    expect(page.mainEntity).toEqual({ '@id': APP_ID });
+    expect(graph['@graph'].some((n) => n['@type'] === 'BreadcrumbList')).toBe(true);
+  });
+});
+
+describe('howto graph', () => {
+  it('adds a HowTo with positioned steps', () => {
+    const graph = buildGraph({
+      type: 'howto',
+      url: 'https://walktalkmeditate.org/guide/getting-started/',
+      title: 'Getting Started',
+      description: 'Your on-ramp to a pilgrimage.',
+      howToSteps: ['Choose a route', 'Pick a question', 'Walk'],
+      breadcrumbs: [{ name: 'Home', url: 'https://walktalkmeditate.org/' }],
+    }) as { '@graph': Array<Record<string, unknown>> };
+    const howto = graph['@graph'].find((n) => n['@type'] === 'HowTo')! as {
+      step: Array<{ position: number; text: string }>;
+    };
+    expect(howto.step).toHaveLength(3);
+    expect(howto.step[0]).toMatchObject({ position: 1, text: 'Choose a route' });
+  });
+});
+
+describe('questionList graph', () => {
+  it('adds an ItemList of the question texts on a CollectionPage', () => {
+    const graph = buildGraph({
+      type: 'questionList',
+      url: 'https://walktalkmeditate.org/questions/morning/',
+      title: 'Morning Seeds',
+      description: 'Prompts for morning meditation.',
+      items: ['What is alive in you?', 'What will you let go of?'],
+    }) as { '@graph': Array<Record<string, unknown>> };
+    const types = graph['@graph'].map((n) => n['@type']);
+    expect(types).toContain('CollectionPage');
+    const list = graph['@graph'].find((n) => n['@type'] === 'ItemList')! as {
+      numberOfItems: number;
+      itemListElement: unknown[];
+    };
+    expect(list.numberOfItems).toBe(2);
+    expect(list.itemListElement).toHaveLength(2);
   });
 });
