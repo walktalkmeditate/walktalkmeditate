@@ -2,6 +2,7 @@
 import ContentLayout from '../layouts/ContentLayout.astro';
 import { SITE_URL } from '../lib/structuredData';
 
+const base = import.meta.env.BASE_URL;
 const breadcrumbs = [
   { name: 'Home', url: `${SITE_URL}/` },
   { name: 'Pilgrim', url: `${SITE_URL}/pilgrim/` },
@@ -22,13 +23,13 @@ const breadcrumbs = [
   <h2>The three pillars, in your pocket</h2>
   <ul>
     <li><strong>Walk</strong> — GPS route tracking and voice notes transcribed on-device, so a thought mid-walk is never lost.</li>
-    <li><strong>Talk</strong> — reflection prompts generated from your own voice notes and photos, alongside the curated <a href="/questions/">65 questions</a>.</li>
+    <li><strong>Talk</strong> — reflection prompts generated from your own voice notes and photos, alongside the curated <a href={`${base}questions/`}>65 questions</a>.</li>
     <li><strong>Meditate</strong> — a walking-meditation breathing circle with ambient soundscapes and seven voice guides.</li>
   </ul>
 
   <p>
     Everything stays on your phone. Voice transcription runs entirely on-device. The
-    full source is on <a href="https://github.com/walktalkmeditate/pilgrim-ios">GitHub</a>.
+    full source is on <a href="https://github.com/walktalkmeditate">GitHub</a>.
   </p>
 
   <div class="mt-10 flex flex-wrap gap-4 not-prose">
