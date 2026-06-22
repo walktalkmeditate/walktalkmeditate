@@ -59,7 +59,7 @@ export function websiteNode(): Node {
   };
 }
 
-function webPageNode(input: StructuredDataInput, schemaType: string, mainEntityId?: string): Node {
+function webPageNode(input: StructuredDataInput, schemaType: 'WebPage' | 'CollectionPage', mainEntityId?: string): Node {
   const node: Node = {
     '@type': schemaType,
     '@id': `${input.url}#webpage`,

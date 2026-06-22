@@ -9,7 +9,6 @@ import {
   mobileAppNode,
   APP_ID,
 } from './structuredData';
-import { breadcrumbNode } from './structuredData';
 
 describe('organizationNode', () => {
   it('is an Organization named Walk Talk Meditate with the shared @id', () => {
@@ -104,6 +103,14 @@ describe('mobileAppNode', () => {
     expect(app.publisher).toEqual({ '@id': ORG_ID });
     expect(app.offers).toMatchObject({ price: '0', priceCurrency: 'USD' });
   });
+
+  it('includes both store URLs in sameAs', () => {
+    const app = mobileAppNode();
+    expect(app.sameAs as string[]).toEqual(expect.arrayContaining([
+      'https://apps.apple.com/app/pilgrim-mindful-walking/id6760921056',
+      'https://play.google.com/store/apps/details?id=org.walktalkmeditate.pilgrim',
+    ]));
+  });
 });
 
 describe('home graph', () => {
@@ -154,6 +161,18 @@ describe('howto graph', () => {
     expect(howto.step).toHaveLength(3);
     expect(howto.step[0]).toMatchObject({ position: 1, text: 'Choose a route' });
   });
+
+  it('includes a WebPage node', () => {
+    const graph = buildGraph({
+      type: 'howto',
+      url: 'https://walktalkmeditate.org/guide/getting-started/',
+      title: 'Getting Started',
+      description: 'Your on-ramp to a pilgrimage.',
+      howToSteps: ['Choose a route'],
+    }) as { '@graph': Array<Record<string, unknown>> };
+    const types = graph['@graph'].map((n) => n['@type']);
+    expect(types).toContain('WebPage');
+  });
 });
 
 describe('questionList graph', () => {
@@ -173,5 +192,20 @@ describe('questionList graph', () => {
     };
     expect(list.numberOfItems).toBe(2);
     expect(list.itemListElement).toHaveLength(2);
+  });
+
+  it('includes a BreadcrumbList node when breadcrumbs are provided', () => {
+    const graph = buildGraph({
+      type: 'questionList',
+      url: 'https://walktalkmeditate.org/questions/morning/',
+      title: 'Morning Seeds',
+      description: 'Prompts for morning meditation.',
+      items: ['What is alive in you?'],
+      breadcrumbs: [
+        { name: 'Home', url: 'https://walktalkmeditate.org/' },
+        { name: 'Questions', url: 'https://walktalkmeditate.org/questions/' },
+      ],
+    }) as { '@graph': Array<Record<string, unknown>> };
+    expect(graph['@graph'].some((n) => n['@type'] === 'BreadcrumbList')).toBe(true);
   });
 });
